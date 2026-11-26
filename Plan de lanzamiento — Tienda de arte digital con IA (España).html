@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan de lanzamiento — Tienda de arte digital con IA (España)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF5EE; --surface:#FFFFFF; --ink:#241C1A; --ink-muted:#6E6059;
+    --poppy:#A8362A; --poppy-soft:#F1DAD5; --sage:#5F7350; --sage-soft:#E3E8DA;
+    --gold:#B98A2E; --gold-soft:#F1E6CC; --line:#E4DACD; --neutral-bar:#CDBFAF;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1B1613; --surface:#241E1A; --ink:#F1E9E1; --ink-muted:#B7A99D;
+      --poppy:#E2776A; --poppy-soft:#4A2A24; --sage:#9FB37E; --sage-soft:#31402A;
+      --gold:#D9B564; --gold-soft:#3E3420; --line:#3A322B; --neutral-bar:#4A4038;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1B1613; --surface:#241E1A; --ink:#F1E9E1; --ink-muted:#B7A99D;
+    --poppy:#E2776A; --poppy-soft:#4A2A24; --sage:#9FB37E; --sage-soft:#31402A;
+    --gold:#D9B564; --gold-soft:#3E3420; --line:#3A322B; --neutral-bar:#4A4038;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Fraunces',Georgia,'Times New Roman',serif; font-weight:600; line-height:1.15; margin:0 0 .5em 0;}
+  p{margin:0 0 1em 0; max-width:66ch;}
+  .wrap{max-width:760px; margin:0 auto; padding:0 20px 80px;}
+
+  .hero{padding:52px 0 28px; border-bottom:1px solid var(--line);}
+  .hero .kicker{font-size:.95rem; color:var(--ink-muted); margin:0 0 14px 0;}
+  .hero h1{font-size:clamp(1.9rem, 4.6vw, 2.7rem); letter-spacing:-.01em;}
+  .hero .desc{color:var(--ink-muted); max-width:62ch;}
+
+  .progress-wrap{margin-top:26px;}
+  .progress-track{height:8px; background:var(--line); border-radius:4px; overflow:hidden;}
+  .progress-fill{height:100%; width:0%; background:var(--poppy); transition:width .25s ease;}
+  .progress-row{display:flex; justify-content:space-between; align-items:center; margin-top:8px; font-size:.85rem; color:var(--ink-muted);}
+  .reset-btn{background:none; border:1px solid var(--line); color:var(--ink-muted); font-family:'Inter',sans-serif; font-size:.8rem; padding:5px 10px; border-radius:5px; cursor:pointer;}
+  .reset-btn:hover{border-color:var(--poppy); color:var(--poppy);}
+
+  .callout{background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--gold); padding:18px 20px; margin:28px 0; font-size:.95rem;}
+  .callout strong{display:block; margin-bottom:6px; font-family:'Fraunces',serif; font-size:1.02rem;}
+
+  .chart-box{margin:20px 0 8px 0;}
+  .chart-box svg{width:100%; height:auto; display:block;}
+  .chart-label{font-family:'Inter',sans-serif; font-size:12px; fill:var(--ink);}
+  .chart-label-muted{font-family:'Inter',sans-serif; font-size:11px; fill:var(--ink-muted);}
+
+  .phase{padding:34px 0; border-bottom:1px solid var(--line);}
+  .phase:last-of-type{border-bottom:none;}
+  .phase-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; border-left:3px solid var(--poppy); padding-left:14px;}
+  .phase:nth-of-type(even) .phase-head{border-left-color:var(--sage);}
+  .phase-head h2{font-size:1.35rem; margin:0;}
+  .phase-when{font-size:.82rem; color:var(--ink-muted); background:var(--surface); border:1px solid var(--line); padding:3px 10px; border-radius:20px;}
+  .phase-lede{color:var(--ink-muted); margin-top:10px;}
+
+  .tasklist{margin-top:14px; border-top:1px solid var(--line);}
+  .task{display:flex; align-items:flex-start; gap:12px; padding:11px 2px; border-bottom:1px solid var(--line); cursor:pointer;}
+  .task input[type="checkbox"]{margin-top:3px; width:16px; height:16px; accent-color:var(--poppy); flex-shrink:0; cursor:pointer;}
+  .task span{font-size:.94rem;}
+  .task.done span{color:var(--ink-muted); text-decoration:line-through;}
+
+  table.tools{width:100%; border-collapse:collapse; margin-top:10px;}
+  table.tools tr{border-bottom:1px solid var(--line);}
+  table.tools tr:last-child{border-bottom:none;}
+  table.tools th, table.tools td{text-align:left; padding:10px 8px; font-size:.9rem; vertical-align:top;}
+  table.tools th{color:var(--ink-muted); font-weight:500; width:30%;}
+
+  footer{padding-top:30px; color:var(--ink-muted); font-size:.83rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <p class="kicker">Plan de lanzamiento paso a paso</p>
+    <h1>Tienda de arte digital ilustrado con IA — España</h1>
+    <p class="desc">Hoja de ruta completa para lanzar una tienda de descargas digitales en el mismo nicho que poppydotcoprints (arte de pared infantil, vivero, botánico y costero), con ilustraciones propias generadas con IA, cumpliendo la normativa de Etsy y con un USP realista.</p>
+
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-row">
+        <span id="progress-label">0 / 0 tareas completadas</span>
+        <button class="reset-btn" id="reset-btn" type="button">Reiniciar progreso</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="callout">
+    <strong>Antes de empezar: la regla que no se negocia</strong>
+    Cada ficha debe declarar el uso de IA (casilla de generación con IA + atribución "Designed by [tu marca]" en vez de "Made by"), y el diseño debe partir de tus propios prompts y dirección creativa, no de plantillas o prompts comprados. Etsy eliminó unos 12.000 anuncios solo en el primer trimestre de 2026 por incumplir esto. Declararlo bien protege la tienda; ocultarlo es lo que la hunde.
+  </section>
+
+  <div class="chart-box">
+    <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cronograma de las 7 fases del plan a lo largo de 6 semanas">
+      <!-- grid -->
+      <g stroke="var(--line)" stroke-width="1">
+        <line x1="140" y1="10" x2="140" y2="260"/>
+        <line x1="220" y1="10" x2="220" y2="260"/>
+        <line x1="300" y1="10" x2="300" y2="260"/>
+        <line x1="380" y1="10" x2="380" y2="260"/>
+        <line x1="460" y1="10" x2="460" y2="260"/>
+        <line x1="540" y1="10" x2="540" y2="260"/>
+        <line x1="620" y1="10" x2="620" y2="260"/>
+      </g>
+      <g class="chart-label-muted" text-anchor="middle">
+        <text x="140" y="274">S0</text><text x="220" y="274">S1</text><text x="300" y="274">S2</text>
+        <text x="380" y="274">S3</text><text x="460" y="274">S4</text><text x="540" y="274">S5</text><text x="620" y="274">S6+</text>
+      </g>
+      <!-- rows -->
+      <text x="132" y="35" text-anchor="end" class="chart-label">Fase 0 · Base legal</text>
+      <rect x="140" y="20" width="40" height="20" rx="2" fill="var(--poppy)"/>
+
+      <text x="132" y="71" text-anchor="end" class="chart-label">Fase 1 · Nicho y USP</text>
+      <rect x="180" y="56" width="80" height="20" rx="2" fill="var(--sage)"/>
+
+      <text x="132" y="107" text-anchor="end" class="chart-label">Fase 2 · Ilustración IA</text>
+      <rect x="180" y="92" width="200" height="20" rx="2" fill="var(--gold)"/>
+
+      <text x="132" y="143" text-anchor="end" class="chart-label">Fase 3 · Catálogo/SEO</text>
+      <rect x="380" y="128" width="80" height="20" rx="2" fill="var(--poppy)"/>
+
+      <text x="132" y="179" text-anchor="end" class="chart-label">Fase 4 · Config. tienda</text>
+      <rect x="460" y="164" width="40" height="20" rx="2" fill="var(--sage)"/>
+
+      <text x="132" y="215" text-anchor="end" class="chart-label">Fase 5 · Lanzamiento</text>
+      <rect x="500" y="200" width="80" height="20" rx="2" fill="var(--gold)"/>
+
+      <text x="132" y="251" text-anchor="end" class="chart-label">Fase 6 · Operación</text>
+      <rect x="580" y="236" width="50" height="20" rx="2" fill="var(--poppy)"/>
+      <text x="636" y="250" text-anchor="end" class="chart-label-muted">→</text>
+    </svg>
+  </div>
+
+  <main>
+
+    <section class="phase">
+      <div class="phase-head"><h2>Fase 0 — Base legal y de cuenta</h2><span class="phase-when">Antes de publicar</span></div>
+      <p class="phase-lede">Lo administrativo va antes que lo creativo. No soy asesor legal ni fiscal, así que trátalo como punto de partida, no como respuesta definitiva.</p>
+      <div class="tasklist">
+        <label class="task"><input type="checkbox" data-id="f0-1"><span>Confirmar con una gestoría si necesitas alta de autónoma/o (Hacienda y Seguridad Social) antes de vender de forma habitual en España</span></label>
+        <label class="task"><input type="checkbox" data-id="f0-2"><span>Crear o revisar tu cuenta de Etsy con dirección en España y Etsy Payments en euros</span></label>
+        <label class="task"><input type="checkbox" data-id="f0-3"><span>Redactar tu texto estándar de declaración de IA para reutilizar en cada ficha</span></label>
+        <label class="task"><input type="checkbox" data-id="f0-4"><span>Elegir el nombre de marca y comprobar que está libre en Etsy, Instagram y Pinterest</span></label>
+      </div>
+    </section>
+
+    <section class="phase">
+      <div class="phase-head"><h2>Fase 1 — Nicho, estilo y USP</h2><span class="phase-when">Semana 1</span></div>
+      <p class="phase-lede">El objetivo aquí no es "arte de pared" en general, sino un subnicho concreto con una razón real para elegirte a ti y no a poppydotcoprints ni a los packs PLR.</p>
+      <div class="tasklist">
+        <label class="task"><input type="checkbox" data-id="f1-1"><span>Elegir el subnicho exacto (p. ej. fauna ibérica en acuarela para habitación infantil, en vez de "vivero" genérico)</span></label>
+        <label class="task"><input type="checkbox" data-id="f1-2"><span>Fijar 2-3 estilos visuales y no salirte de ellos — la consistencia es lo que te hace reconocible</span></label>
+        <label class="task"><input type="checkbox" data-id="f1-3"><span>Definir tu USP real: no "sin IA", sino algo verificable (curación de estilo, ángulo local España/EU, cadencia de catálogo)</span></label>
+        <label class="task"><input type="checkbox" data-id="f1-4"><span>Escribir el "Acerca de" de la tienda contando tu proceso real de forma honesta</span></label>
+      </div>
+    </section>
+
+    <section class="phase">
+      <div class="phase-head"><h2>Fase 2 — Flujo de ilustración con IA</h2><span class="phase-when">Semanas 1–3, en paralelo</span></div>
+      <p class="phase-lede">Aquí se juega la calidad real de la tienda. Un sistema de prompts propio y repetible importa más que la herramienta concreta que uses.</p>
+      <div class="tasklist">
+        <label class="task"><input type="checkbox" data-id="f2-1"><span>Elegir herramienta(s) de generación de imágenes y construir tu propio sistema de prompts reutilizable</span></label>
+        <label class="task"><input type="checkbox" data-id="f2-2"><span>Generar un lote de prueba (10-15 piezas) del mismo estilo y validar que son consistentes entre sí</span></label>
+        <label class="task"><input type="checkbox" data-id="f2-3"><span>Definir el proceso de post-producción: upscaling, corrección de color, limpieza de artefactos</span></label>
+        <label class="task"><input type="checkbox" data-id="f2-4"><span>Crear los mockups de producto (lámina enmarcada en pared) para cada pieza</span></label>
+        <label class="task"><input type="checkbox" data-id="f2-5"><span>Montar una checklist de control de calidad manual antes de publicar cualquier imagen</span></label>
+      </div>
+    </section>
+
+    <section class="phase">
+      <div class="phase-head"><h2>Fase 3 — Catálogo, precios y SEO</h2><span class="phase-when">Semanas 3–4</span></div>
+      <p class="phase-lede">Se trata de replicar la arquitectura que detectamos en el análisis, no el contenido.</p>
+      <div class="tasklist">
+        <label class="task"><input type="checkbox" data-id="f3-1"><span>Diseñar tu árbol de colecciones por tema + estilo + formato</span></label>
+        <label class="task"><input type="checkbox" data-id="f3-2"><span>Definir tu fórmula de título: técnica + sujeto + estancia + tipo de entrega</span></label>
+        <label class="task"><input type="checkbox" data-id="f3-3"><span>Fijar tu estructura de precios (individual, set de 2, set de 3) y tu porcentaje de descuento ancla</span></label>
+        <label class="task"><input type="checkbox" data-id="f3-4"><span>Preparar al menos 25-30 fichas completas antes de abrir la tienda al público</span></label>
+      </div>
+    </section>
+
+    <section class="phase">
+      <div class="phase-head"><h2>Fase 4 — Configuración de la tienda</h2><span class="phase-when">2-3 días, semana 4</span></div>
+      <p class="phase-lede">La parte operativa de Etsy en sí.</p>
+      <div class="tasklist">
+        <label class="task"><input type="checkbox" data-id="f4-1"><span>Subir banner, foto de perfil y "Presentación" con tu historia real</span></label>
+        <label class="task"><input type="checkbox" data-id="f4-2"><span>Configurar políticas de la tienda (pagos, cambios y devoluciones de producto digital)</span></label>
+        <label class="task"><input type="checkbox" data-id="f4-3"><span>Activar la declaración de IA y el atributo "Designed by" en todas las fichas, no solo en las primeras</span></label>
+        <label class="task"><input type="checkbox" data-id="f4-4"><span>Configurar el mensaje de bienvenida / respuesta automática a compradoras</span></label>
+      </div>
+    </section>
+
+    <section class="phase">
+      <div class="phase-head"><h2>Fase 5 — Lanzamiento</h2><span class="phase-when">Semana de apertura</span></div>
+      <p class="phase-lede">No se abre la tienda subiendo 30 fichas el mismo día — eso no manda buena señal al algoritmo de búsqueda.</p>
+      <div class="tasklist">
+        <label class="task"><input type="checkbox" data-id="f5-1"><span>Publicar en oleadas a lo largo de la semana, no todo de golpe</span></label>
+        <label class="task"><input type="checkbox" data-id="f5-2"><span>Activar Pinterest e Instagram con las primeras piezas, enlazando a la tienda</span></label>
+        <label class="task"><input type="checkbox" data-id="f5-3"><span>Pedir tus primeras reseñas a contactos reales — nunca comprarlas, Etsy lo detecta</span></label>
+        <label class="task"><input type="checkbox" data-id="f5-4"><span>Revisar que cada ficha nueva cumple la declaración de IA antes de publicarla</span></label>
+      </div>
+    </section>
+
+    <section class="phase">
+      <div class="phase-head"><h2>Fase 6 — Operación continua</h2><span class="phase-when">Semana 6 en adelante</span></div>
+      <p class="phase-lede">Aquí es donde de verdad se automatiza lo repetitivo, una vez que el flujo manual ya está validado.</p>
+      <div class="tasklist">
+        <label class="task"><input type="checkbox" data-id="f6-1"><span>Fijar una cadencia de publicación semanal sostenible</span></label>
+        <label class="task"><input type="checkbox" data-id="f6-2"><span>Revisar mensajes de compradoras a diario — clave para el sello de Vendedora Estrella</span></label>
+        <label class="task"><input type="checkbox" data-id="f6-3"><span>Vigilar métricas: favoritos, CTR de búsqueda, conversión por colección</span></label>
+        <label class="task"><input type="checkbox" data-id="f6-4"><span>Automatizar la subida masiva de fichas y plantillas de descripción una vez validado el flujo manual</span></label>
+      </div>
+    </section>
+
+    <section class="phase">
+      <div class="phase-head"><h2>Herramientas por categoría</h2></div>
+      <table class="tools">
+        <tr><th>Generación de imágenes</th><td>Herramientas de IA generativa de imagen (Midjourney, Adobe Firefly, generadores basados en modelos de OpenAI, Ideogram...). Revisa la licencia comercial de cada una antes de vender.</td></tr>
+        <tr><th>Mockups de producto</th><td>Herramientas de maquetado de láminas en marcos/paredes (Canva y generadores de mockup especializados).</td></tr>
+        <tr><th>Subida masiva</th><td>Existen herramientas de terceros para bulk-listing en Etsy; compara varias antes de suscribirte a ninguna, no dependas de una sola sin probarla.</td></tr>
+        <tr><th>Declaración de IA</th><td>Algunas herramientas de listado incluyen plantillas de disclosure ya redactadas, pero el texto final siempre debe reflejar tu proceso real, no un genérico copiado.</td></tr>
+      </table>
+    </section>
+
+  </main>
+
+  <footer>
+    Plan orientativo elaborado el 16 de septiembre de 2026. No sustituye asesoría legal, fiscal ni el propio Seller Handbook de Etsy. Tu progreso se guarda solo en este navegador.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY = 'poppyplan_tasks_v1';
+  function loadState(){
+    try{
+      var raw = localStorage.getItem(KEY);
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){ return {}; }
+  }
+  function saveState(state){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  function updateProgress(){
+    var boxes = document.querySelectorAll('.task input[type="checkbox"]');
+    var total = boxes.length, done = 0;
+    boxes.forEach(function(b){ if(b.checked) done++; });
+    var pct = total ? Math.round(done/total*100) : 0;
+    var fill = document.getElementById('progress-fill');
+    var label = document.getElementById('progress-label');
+    if(fill) fill.style.width = pct+'%';
+    if(label) label.textContent = done+' / '+total+' tareas completadas ('+pct+'%)';
+  }
+  function init(){
+    var state = loadState();
+    var boxes = document.querySelectorAll('.task input[type="checkbox"]');
+    boxes.forEach(function(b){
+      var id = b.getAttribute('data-id');
+      if(state[id]){ b.checked = true; b.closest('.task').classList.add('done'); }
+      b.addEventListener('change', function(){
+        var s = loadState();
+        s[id] = b.checked;
+        saveState(s);
+        b.closest('.task').classList.toggle('done', b.checked);
+        updateProgress();
+      });
+    });
+    updateProgress();
+    var resetBtn = document.getElementById('reset-btn');
+    if(resetBtn){
+      resetBtn.addEventListener('click', function(){
+        try{ localStorage.removeItem(KEY); }catch(e){}
+        boxes.forEach(function(b){ b.checked = false; b.closest('.task').classList.remove('done'); });
+        updateProgress();
+      });
+    }
+  }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', init); } else { init(); }
+})();
+</script>
+</body>
+</html>
